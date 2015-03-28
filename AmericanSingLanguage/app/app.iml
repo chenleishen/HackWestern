@@ -85,6 +85,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="unirest-java-1.4.6-SNAPSHOT-withDependency-ShadedForAndroid" level="project" />
   </component>
 </module>
 
