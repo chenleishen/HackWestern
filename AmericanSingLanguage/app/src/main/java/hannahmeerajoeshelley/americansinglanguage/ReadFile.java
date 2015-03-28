@@ -15,37 +15,49 @@ public class ReadFile {
     }
 
     private int readLines() throws IOException {
-        FileReader fileToRead = new FileReader(path);
-        BufferedReader bf = new BufferedReader(fileToRead);
+        try{
+            FileReader fileToRead = new FileReader(path);
+            BufferedReader bf = new BufferedReader(fileToRead);
 
-        String aLine;
-        int numberOfLines = 0;
-        while ( (aLine = bf.readLine()) != null) {
-            numberOfLines++;
+            String aLine = bf.readLine();
+            int numberOfLines = 0;
+            while (aLine == null){
+                numberOfLines++;
+                aLine = bf.readLine();
+            }
+            bf.close();
+            fileToRead.close();
+            return numberOfLines;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
         }
-        bf.close();
-        return numberOfLines;
-
     }
 
-    public String [] Openfile() throws IOException {
-        FileReader fr = new FileReader(path);
-        BufferedReader textReader = new BufferedReader(fr);
+    public String[] openFile() throws IOException {
+        try {
+            FileReader fr = new FileReader(path);
+            BufferedReader textReader = new BufferedReader(fr);
 
-        int numberOfLines = readLines();
+            int numberOfLines = readLines();
 
-        String[] textData = new String[numberOfLines];
-
-
-
-        int i;
+            String[] textData = new String[numberOfLines];
 
 
-        for(i = 0; i < numberOfLines; i++) {
+            int i;
 
-            textData[i] = textReader.readLine();
+
+            for(i = 0; i < numberOfLines; i++) {
+
+                textData[i] = textReader.readLine();
+            }
+            fr.close();
+            textReader.close();
+            return textData;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new String[0];
         }
-        return textData;
     }
-
 }
