@@ -1,15 +1,5 @@
 package hannahmeerajoeshelley.americansinglanguage;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import java.util.ArrayList;
 
 
@@ -123,17 +113,17 @@ public class LyricsHandler {
         //String[] delimitedTrackInfo = getTrackInfoREST.split("\\{\"");
         //String[] delimitedTrackInfo = getTrackInfoREST.split(",\"track_mbid\":");
         //
-        HttpResponse<JsonNode> response = Unirest.get("https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.search?f_has_lyrics=1&page=1&page_size=5&q=hot+cross+buns&s_track_rating=desc")
-                .header("X-Mashape-Key", "EEZTLb3jOTmshwWGf9EA4GGXgEFop1wZsP4jsnDKSP26wlBPLg")
-                .header("Accept", "application/json")
-                .asJson();
+        //HttpResponse<JsonNode> response = Unirest.get("https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.search?f_has_lyrics=1&page=1&page_size=5&q=hot+cross+buns&s_track_rating=desc")
+        //        .header("X-Mashape-Key", "EEZTLb3jOTmshwWGf9EA4GGXgEFop1wZsP4jsnDKSP26wlBPLg")
+        //        .header("Accept", "application/json")
+        //        .asJson();
 
         // curl --get --include "https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.lyrics.get?track_id=15449912" \
         // -H "X-Mashape-Key: EEZTLb3jOTmshwWGf9EA4GGXgEFop1wZsP4jsnDKSP26wlBPLg" \
         // -H "Accept: application/json"
 
         String[] testOut = new String[1];
-        testOut[0] = getTrackInfoREST;
+        //testOut[0] = getTrackInfoREST;
         return testOut;
     }
 
