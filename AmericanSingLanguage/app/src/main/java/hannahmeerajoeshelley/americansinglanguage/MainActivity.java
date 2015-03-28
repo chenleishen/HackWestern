@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
+import java.io.IOException;
+
 
 public class MainActivity extends SecondPage implements View.OnClickListener {
 
@@ -53,10 +55,33 @@ public class MainActivity extends SecondPage implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
+    public void addListenerOnButton() {
+
+        final Context context = this;
+
+        ImageButton button;
+
+        button = (ImageButton) findViewById(R.id.NextButton);
+
+        button.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(context, SecondPage.class);
+                startActivity(intent);
+
+            }
+
+        });
 
     }
 
+    public class FileData {
+        public void main(String[] args) throws IOException {
 
+            String file_name = "testText.txt";
+        }
 
-
-
+    }
+}

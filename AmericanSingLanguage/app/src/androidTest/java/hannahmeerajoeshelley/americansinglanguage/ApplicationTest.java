@@ -15,6 +15,10 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         ReadFileTest test1 = new ReadFileTest();
     }
 
+//        String file_name = "testText.txt";
+//        ReadFile reading = new ReadFile("testText.txt");
+//        reading.Openfile();
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
