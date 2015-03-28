@@ -12,6 +12,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         super(Application.class);
 
         LyricsHandlerTest test = new LyricsHandlerTest();
+        ReadFileTest test1 = new ReadFileTest();
     }
 
     @Override

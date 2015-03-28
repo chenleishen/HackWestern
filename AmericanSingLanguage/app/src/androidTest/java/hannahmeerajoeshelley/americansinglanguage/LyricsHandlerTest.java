@@ -18,5 +18,11 @@ public class LyricsHandlerTest extends LyricsHandler {
         ApplicationTest.assertEquals("2",lyricsToActions("b",testActionList));
         ApplicationTest.assertEquals("3",lyricsToActions("c",testActionList));
         ApplicationTest.assertEquals("1",lyricsToActions("a",testActionList));
+
+        String[] testAPI = lyricReadAPI("hot cross buns");
+        android.util.Log.e("TEST APP", "WHAT THE HELL~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        android.util.Log.e("TEST APP", testAPI[0]);
+        android.util.Log.e("TEST APP", testAPI[1]);
+        ApplicationTest.assertEquals("1", testAPI[0]);
     }
 }
