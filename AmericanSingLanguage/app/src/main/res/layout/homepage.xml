@@ -17,7 +17,7 @@
             android:id="@+id/imageButton"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
-            android:src="@drawable/SignLanguageLogoLarge" />
+            android:src="@drawable/sign_lanugage_logo_large" />
 
         <TextView
             android:layout_width="365dp"
@@ -46,7 +46,7 @@
             android:id="@+id/NextButton"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
-            android:src="@drawable/NextButton"
+            android:src="@drawable/next_button"
             android:scaleType="fitCenter"
             android:layout_weight="0.6"
             android:contentDescription="nextbutton"
