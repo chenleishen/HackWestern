@@ -18,6 +18,9 @@ public class LyricsHandler {
      *
      */
     private void buildActionList(){
+        //TODO: Convert this to get from a DB
+
+        //TEMP: Manually add to list
         savedActionList.add(new WordAction("a",""));
         savedActionList.add(new WordAction("above",""));
         savedActionList.add(new WordAction("are",""));
@@ -41,6 +44,12 @@ public class LyricsHandler {
     }
 
     /* lyricsToActions
+     * Overloading function
+     */
+    public String lyricsToActions(String readWord) {
+        return lyricsToActions(readWord, savedActionList);
+    }
+    /* lyricsToActions
      * String (object) -> String
      *
      * Takes a word and an object WordAction and returns the matching lyric action link
@@ -62,10 +71,56 @@ public class LyricsHandler {
     }
 
 
-    /* lyricsReadFromFile
+    /* lyricsReadFile
      * String -> (ArrayOf String)
      *
-     * Takes a word and an object WordAction and returns the matching lyric action link
+     * ...
      *
      */
+    public String[] lyricsReadFile(String songPath){
+        String[] lyricsUntouched = new String[0]; //TODO: Change this
+        //TODO: Finish this method
+
+        return lyricsUntouched;
+    };
+
+
+
+    // Local-only constants
+    private static final byte FILE = 0;
+    private static final byte API = 1;
+    /* parseLyrics
+     * (String String) -> (ArrayOf String)
+     * Either the file name or song name to get from API is the input
+     *
+     * ... get lyrics from any source (toggle option)
+     *      then passes it through lyricsToActions
+     *
+     */
+    public ArrayList<String> parseLyrics(String nameOfSong, byte retrievalType){
+        String[] lyricsUntouched = new String[0];
+        ArrayList<String> makeActionList = new ArrayList<String>();
+
+        // Get from File
+        if(retrievalType == FILE){
+            lyricsUntouched = lyricsReadFile(nameOfSong); //TODO: Merge ReadFile & ReadAPI
+        }
+        // Get from API
+        if(retrievalType == API) {
+            //lyricsUntouched = lyricsReadAPI(nameOfSong); //TODO: Use API from MashApe?
+        }
+
+        int i = lyricsUntouched.length - 1, b = i;
+        for(; i>=0; --i) {
+            String[] lyricLines = lyricsUntouched[b - i].split("[ .,\n\r\0]+");
+            int j = lyricLines.length - 1, c = j;
+            for(; j>=0; --j) {
+                makeActionList.add(lyricsToActions(lyricLines[c - j]));
+            }
+        }
+
+        return makeActionList;
+    }
+
+
 }
