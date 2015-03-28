@@ -1,17 +1,28 @@
 package hannahmeerajoeshelley.americansinglanguage;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import java.util.ArrayList;
+
 
 /**
  * Created by joseph on 15-03-28.
  *
- * Random thought: When pulling from the DB. Save the word map a file?
+ * Random thought: When pulling from the DB. Save each song is it's own table
  *      This way the user "downloads" a song and only that small table is required
  *      and so there's no need to search the entire DB just the one relevant to the song.
  *
- *      Implementation: Change buildActionList the lyrics and then parse them
- *          once the download is done it will then save it. Then when you load songs you
- *          have to provide the path.
+ *      Implementation: buildActionList will build just before playing a song(?).
+ *      SQLlite will save each actionList for the song -- This whole thing will be slow.
+ *
  *
  *
  */
@@ -28,9 +39,13 @@ public class LyricsHandler {
      *
      */
     private void buildActionList(){
-        //TODO: Convert this to get from a DB
+        //TODO: Convert this to use a SQLlite
 
         //TEMP: Manually add to list
+        buildTwinkle();
+    }
+
+    private void buildTwinkle(){
         savedActionList.add(new WordAction("a",""));
         savedActionList.add(new WordAction("above",""));
         savedActionList.add(new WordAction("are",""));
@@ -56,7 +71,7 @@ public class LyricsHandler {
     /* lyricsToActions
      * Overloading function
      */
-    public String lyricsToActions(String readWord) {
+    private String lyricsToActions(String readWord) {
         return lyricsToActions(readWord, savedActionList);
     }
     /* lyricsToActions
@@ -94,11 +109,39 @@ public class LyricsHandler {
         return lyricsUntouched;
     };
 
+    /* lyricsReadAPI
+     * String -> (ArrayOf Strings)
+     */
+    public String[] lyricReadAPI(String songName){
+        int trackID = 0;
+
+        // curl --get --include "https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.search?f_has_lyrics=1&page=1&page_size=5&q=Every+tear+drop+paradise+coldpay&q_artist=coldplay&q_lyrics=Every+tear+a+waterfall&q_track=paradise&q_track_artist=paradise+coldplay&s_track_rating=desc" \
+        // -H "X-Mashape-Key: EEZTLb3jOTmshwWGf9EA4GGXgEFop1wZsP4jsnDKSP26wlBPLg" \
+        // -H "Accept: application/json"
+        //HttpHandler getREST = new HttpHandler();
+        //String getTrackInfoREST = getREST.getRequest("https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.search?f_has_lyrics=1&page=1&page_size=5&q=" + songName);
+        //String[] delimitedTrackInfo = getTrackInfoREST.split("\\{\"");
+        //String[] delimitedTrackInfo = getTrackInfoREST.split(",\"track_mbid\":");
+        //
+        HttpResponse<JsonNode> response = Unirest.get("https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.search?f_has_lyrics=1&page=1&page_size=5&q=hot+cross+buns&s_track_rating=desc")
+                .header("X-Mashape-Key", "EEZTLb3jOTmshwWGf9EA4GGXgEFop1wZsP4jsnDKSP26wlBPLg")
+                .header("Accept", "application/json")
+                .asJson();
+
+        // curl --get --include "https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.lyrics.get?track_id=15449912" \
+        // -H "X-Mashape-Key: EEZTLb3jOTmshwWGf9EA4GGXgEFop1wZsP4jsnDKSP26wlBPLg" \
+        // -H "Accept: application/json"
+
+        String[] testOut = new String[1];
+        testOut[0] = getTrackInfoREST;
+        return testOut;
+    }
 
 
     // Local-only constants
     private static final byte FILE = 0;
     private static final byte API = 1;
+    private static final byte SQLLITE = 2;
     /* parseLyrics
      * (String String) -> (ArrayOf String)
      * Either the file name or song name to get from API is the input
@@ -120,9 +163,13 @@ public class LyricsHandler {
             //lyricsUntouched = lyricsReadAPI(nameOfSong); //TODO: Use API from MashApe?
         }
 
+        if(retrievalType == SQLLITE) {
+            //lyricsUntouched = lyricsReadAPI(nameOfSong); //TODO: Use API from MashApe?
+        }
+
         int i = lyricsUntouched.length - 1, b = i;
         for(; i>=0; --i) {
-            String[] lyricLines = lyricsUntouched[b - i].split("[ .,\n\r\0]+");
+            String[] lyricLines = lyricsUntouched[b - i].split("[ .,\n\r]+");
             int j = lyricLines.length - 1, c = j;
             for(; j>=0; --j) {
                 makeActionList.add(lyricsToActions(lyricLines[c - j]));
