@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@drawable/turquoisebackground">
@@ -43,7 +43,7 @@
         <ImageButton
             android:layout_width="157dp"
             android:layout_height="90dp"
-            android:id="@+id/imageButton2"
+            android:id="@+id/NextButton"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
             android:src="@drawable/NextButton"
@@ -51,7 +51,7 @@
             android:layout_weight="0.6"
             android:contentDescription="nextbutton"
             android:clickable="true"
-            android:onClick="onButtonClicked"/>
+            android:onClick="Go to next screen"/>
 
     </LinearLayout>
 </RelativeLayout>
