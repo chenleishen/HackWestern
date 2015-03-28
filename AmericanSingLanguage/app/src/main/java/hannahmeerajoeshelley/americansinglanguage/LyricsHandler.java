@@ -4,6 +4,16 @@ import java.util.ArrayList;
 
 /**
  * Created by joseph on 15-03-28.
+ *
+ * Random thought: When pulling from the DB. Save the word map a file?
+ *      This way the user "downloads" a song and only that small table is required
+ *      and so there's no need to search the entire DB just the one relevant to the song.
+ *
+ *      Implementation: Change buildActionList the lyrics and then parse them
+ *          once the download is done it will then save it. Then when you load songs you
+ *          have to provide the path.
+ *
+ *
  */
 public class LyricsHandler {
     //ActionList
