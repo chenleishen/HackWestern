@@ -1,11 +1,12 @@
 package hannahmeerajoeshelley.americansinglanguage;
 
- import android.app.Activity;
- import android.content.Context;
- import android.content.Intent;
- import android.os.Bundle;
- import android.view.View;
- import android.widget.RadioButton;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.RadioButton;
+
 
 public class ThirdPage extends Activity implements View.OnClickListener {
 
@@ -18,11 +19,11 @@ public class ThirdPage extends Activity implements View.OnClickListener {
 
         twinklebutton = (RadioButton) findViewById(R.id.radioButton);
         twinklebutton.setOnClickListener(this);
+            
     }
-
         public void onClick (View v){
             final Context context = this;
-            Intent intent = new Intent(context, FourthPage.class);
+            Intent intent = new Intent(context, StartTutorial.class);
             startActivity(intent);
         }
 

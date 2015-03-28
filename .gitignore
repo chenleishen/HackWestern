@@ -40,7 +40,10 @@ gen-external-apklibs
 
 ## Directory-based project format:
 .idea/
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 # if you remove the above rule, at least ignore the following:
 
 # User-specific stuff:
@@ -89,7 +92,12 @@ crashlytics-build.properties
 .LSOverride
 
 # Icon must end with two \r
+<<<<<<< Updated upstream
 Icon
+=======
+Icon
+
+>>>>>>> Stashed changes
 
 # Thumbnails
 ._*
