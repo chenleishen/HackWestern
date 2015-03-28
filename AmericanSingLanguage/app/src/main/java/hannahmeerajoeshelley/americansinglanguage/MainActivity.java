@@ -11,13 +11,25 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends SecondPage implements View.OnClickListener {
+
+    ImageButton nextbutton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
+
+        nextbutton = (ImageButton) findViewById(R.id.NextButton);
+        nextbutton.setOnClickListener(this);
     }
+
+    public void onClick (View v){
+        final Context context = this;
+        Intent intent = new Intent(context, SecondPage.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -41,29 +53,10 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addListenerOnButton() {
-
-        final Context context = this;
-
-        ImageButton button;
-
-        button = (ImageButton) findViewById(R.id.NextButton);
-
-        button.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                Intent intent = new Intent(context, SecondPage.class);
-                startActivity(intent);
-
-            }
-
-        });
 
     }
 
 
 
-}
+
 

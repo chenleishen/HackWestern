@@ -20,29 +20,40 @@
             android:src="@drawable/sign_lanugage_logo_large" />
 
         <TextView
-            android:layout_width="365dp"
+            android:layout_width="360dp"
             android:layout_height="40dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text= "A unique music experience"
-            android:textAlignment="center"
             android:id="@+id/textView2"
-            android:layout_gravity="center_horizontal"
+            android:gravity="center"
             android:background="#ff7accc8"
-            android:textSize="29dp" />
+            android:layout_gravity="center"
+            android:textSize="24dp" />
 
         <TextView
-            android:layout_width="365dp"
+            android:layout_width="340dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:layout_width="340dp"
             android:layout_height="30dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Ever wonder what music looks like to a deaf person? Want to impress your friends by singing to them in a whole new way?"
             android:id="@+id/textView3"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.73"
-            android:textSize="25dp"/>
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="340dp"
+            android:layout_height="30dp"
+            android:text="Click the arrow to continue"
+            android:gravity="center"
+            />
 
         <ImageButton
             android:layout_width="157dp"
-            android:layout_height="90dp"
+            android:layout_height="30dp"
             android:id="@+id/NextButton"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
