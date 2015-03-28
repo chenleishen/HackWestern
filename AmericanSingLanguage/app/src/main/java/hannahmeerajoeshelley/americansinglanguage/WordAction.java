@@ -2,6 +2,10 @@ package hannahmeerajoeshelley.americansinglanguage;
 
 /**
  * Created by joseph on 15-03-28.
+ *
+ * WordAction Object
+ * Just a key/value pair
+ *
  */
 public class WordAction {
     private String lyricWord;
