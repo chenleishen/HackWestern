@@ -2,7 +2,6 @@ package hannahmeerajoeshelley.americansinglanguage;
 
 import java.util.ArrayList;
 
-
 /**
  * Created by joseph on 15-03-28.
  *
@@ -154,7 +153,7 @@ public class LyricsHandler {
         }
 
         if(retrievalType == SQLLITE) {
-            //lyricsUntouched = lyricsReadAPI(nameOfSong); //TODO: Use API from MashApe?
+            //lyricsUntouched = lyricsReadAPI(nameOfSong); //TODO: Add this one eventually?
         }
 
         int i = lyricsUntouched.length - 1, b = i;
