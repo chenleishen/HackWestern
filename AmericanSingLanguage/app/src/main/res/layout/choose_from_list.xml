@@ -6,7 +6,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:clickable="false">
 
         <TextView
             android:layout_width="fill_parent"
@@ -30,6 +31,7 @@
             android:layout_row="1"
             android:layout_column="10"
             android:textSize="20dp"
+            android:onClick="radio button clicked"
             />
 
 
