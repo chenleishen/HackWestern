@@ -36,4 +36,14 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    @Override
+    public void onButtonClicked(View view) {
+
+        Intent intent = new Intent(this, OtherActivity.class);
+        startActivity(intent);
+
+    }
 }
+

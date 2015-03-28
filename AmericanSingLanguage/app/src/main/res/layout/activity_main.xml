@@ -16,10 +16,10 @@
 
         <TextView
             android:clickable="false"
-            android:layout_width="206dp"
+            android:layout_width="229dp"
             android:layout_height="0dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="  SONGS"
+            android:text="S O N G S"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1.24"
@@ -45,9 +45,7 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ChooseFromListButton"
             android:background="@android:color/transparent"
-            android:clickable="true" />
-
-
+            android:clickable="true"
 
 
     </LinearLayout>
