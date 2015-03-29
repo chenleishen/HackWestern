@@ -82,8 +82,13 @@ public class StartTutorial extends Activity {
 //               myVideoView.bringToFront();
 //               playView(videoView0, pos);
 //           }
+           String temp = "";
+           while(songData.getLyricMap()[pos] < 0){
+               temp += songData.getSongLyrics()[pos] + " ";
+               pos++;
+           }
            TextView titleBox = (TextView) findViewById(R.id.TutorialTitle);
-           titleBox.setText(songData.getSongLyrics()[pos]);
+           titleBox.setText(temp + songData.getSongLyrics()[pos]);
 
            playView(videoView0, pos);
            pos++;
