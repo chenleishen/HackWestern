@@ -11,8 +11,8 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     public ApplicationTest() {
         super(Application.class);
 
-        LyricsHandlerTest test = new LyricsHandlerTest();
-        ReadFileTest test1 = new ReadFileTest();
+        //LyricsHandlerTest test = new LyricsHandlerTest();
+        //ReadFileTest test1 = new ReadFileTest();
     }
 
 //        String file_name = "testText.txt";

@@ -7,8 +7,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Tutorial"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal" />
+        android:text="Twinkle"
+        android:id="@+id/TutorialTitle"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="20dp"/>
 
-</LinearLayout>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center" >
+
+        <VideoView
+        android:id="@+id/video_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+ </LinearLayout>

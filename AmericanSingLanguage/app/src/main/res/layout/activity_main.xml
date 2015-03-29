@@ -17,12 +17,12 @@
         <TextView
             android:clickable="false"
             android:layout_width="229dp"
-            android:layout_height="0dp"
+            android:layout_height="-5dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="S O N G S"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="1.24"
+            android:layout_weight="0.46"
             android:textSize="50sp"
             />
 
