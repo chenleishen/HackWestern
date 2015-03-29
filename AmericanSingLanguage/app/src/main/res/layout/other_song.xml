@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:layout_width="179dp"
+                android:layout_height="60dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="You chose the song:"
+                android:id="@+id/textView5"
+                android:gravity="bottom"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.06" />
+
+            <ImageButton
+                android:layout_width="300dp"
+                android:layout_height="260dp"
+                android:id="@+id/imageButton2"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+             />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Regular Speed"
+                    android:id="@+id/radioButton1"
+                    android:layout_weight="0.06"
+                    android:layout_gravity="center"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Half Speed"
+                    android:id="@+id/radioButton2"
+                    android:layout_weight="0.06"
+                    android:gravity="center"
+                    android:layout_gravity="center"/>
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView6"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.15" />
+
+            <ImageButton
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:id="@+id/sign"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/sign_away"
+                android:clickable="true"
+                android:onClick="taken to tutorial"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+

@@ -49,6 +49,7 @@
             android:layout_height="30dp"
             android:text="Click the arrow to continue"
             android:gravity="center"
+            android:layout_gravity="center"
             />
 
         <ImageButton

@@ -2,37 +2,46 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <GridLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:clickable="false">
+        android:layout_centerHorizontal="true"
+        android:weightSum="1">
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="75dp"
+            android:layout_width="359dp"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Choose From List"
-            android:gravity="center"
-            android:textColor="#ff7accc8"
             android:id="@+id/textView4"
-            android:layout_row="0"
-            android:layout_column="10"
-            android:textSize="46dp"
             android:layout_gravity="center_horizontal"
-            android:textAlignment="center"/>
+            android:layout_weight="0.03"
+            android:textColor="#ff7accc8"
+            android:textSize="45dp" />
 
+       <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <RadioButton
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Twinkle Twinkle Little Star"
             android:id="@+id/radioButton"
-            android:layout_row="1"
-            android:layout_column="10"
+            android:layout_weight="0.03"
             android:textSize="20dp"
-            android:onClick="radio button clicked"
-            />
+            android:onClick="twinkle twinkle start page" />
 
-    </GridLayout>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other Song"
+            android:id="@+id/radioButton3"
+            android:layout_weight="0.03"
+            android:textSize="20dp"
+            android:onClick="Other song start page" />
+       </RadioGroup>
+
+    </LinearLayout>
 </RelativeLayout>
