@@ -41,7 +41,7 @@ public class LyricsHandler {
         savedActionList.add(new WordAction("above",R.raw.above));
         savedActionList.add(new WordAction("are",R.raw.are));
         savedActionList.add(new WordAction("diamond",R.raw.diamond));
-        //savedActionList.add(new WordAction("high",R.raw.high));
+        savedActionList.add(new WordAction("high",R.raw.high));
         savedActionList.add(new WordAction("i",R.raw.i));
         savedActionList.add(new WordAction("in",R.raw.in));
         savedActionList.add(new WordAction("like",R.raw.like));

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -24,6 +24,10 @@ public class StartTutorial extends Activity {
     private SongHandler songHandler;
     private SongType songData;
     private String songName;
+    private int pos;
+    private final int videoView0 = R.id.video_view;
+    private final int videoView1 = R.id.video_view1;
+
 
     public StartTutorial(){
         songHandler = new SongHandler();
@@ -35,23 +39,24 @@ public class StartTutorial extends Activity {
         Intent myIntent = getIntent();
         songName = myIntent.getStringExtra("songName");
         songData = songHandler.getSongMeta(songName);
+        pos = 0;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.asl_tutorial_page);
 
         TextView titleBox = (TextView) findViewById(R.id.TutorialTitle);
-//        String mary = getResources().getString(R.string.twinkle_twinkle_little_star);
-//        String[] words = mary.split("");
-//        titleBox.setText(word);
-        final int videoView0 = R.id.video_view, videoView1 = R.id.video_view1;
 
-        Log.d("SONG DATA", songData.getName());
-        for(int i = 0; i < songData.getSongLyrics().length; i++) {
-            if(songData.getLyricMap()[i] > 0) { //skip missing words
-                Log.d("SONG DATA", songData.getSongLyrics()[i]);
-                playView(videoView0, 0);
-            }
-        }
+        // Play Video and hopefully it gets in a loop
+        playNext();
+
+        myVideoView.setOnCompletionListener(completionListener);
+//        Log.d("SONG DATA", songData.getName());
+//        for(int i = 0; i < songData.getSongLyrics().length; i++) {
+//            if(songData.getLyricMap()[i] > 0) { //skip missing words
+//                Log.d("SONG DATA", songData.getSongLyrics()[i]);
+//                playView(videoView0, i);
+//            }
+//        }
 
     }
     public void playView(int viewID, int pos) {
@@ -60,19 +65,36 @@ public class StartTutorial extends Activity {
         }
 
         myVideoView = (VideoView) findViewById(viewID);
-        //myVideoView.setVisibility(View.VISIBLE);
-        //myVideoView.bringToFront();
         myVideoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + songData.getLyricMap()[pos]));
         myVideoView.start();
         while(myVideoView.isPlaying()){}
-//        myVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                //myVideoView.setVisibility(View.INVISIBLE);
-//
-//            }
-//        });
     }
 
+   public void playNext(){
+       if(pos < songData.getSongLyrics().length) {
+           if(pos % 2 == 0) {
+               myVideoView = (VideoView) findViewById(videoView1);
+               myVideoView.setVisibility(View.VISIBLE);
+               myVideoView.bringToFront();
+               playView(videoView0, pos);
+           }else{
+               myVideoView = (VideoView) findViewById(videoView0);
+               myVideoView.setVisibility(View.VISIBLE);
+               myVideoView.bringToFront();
+               playView(videoView0, pos);
+           }
+           pos++;
+       }else{
+           MediaPlayer mp = new MediaPlayer();
+           mp.stop();
+       }
+   }
 
+
+    private MediaPlayer.OnCompletionListener completionListener=new MediaPlayer.OnCompletionListener() {
+        public void onCompletion(MediaPlayer mp) {
+            mp.stop();
+            playNext();
+        }
+    };
 }
