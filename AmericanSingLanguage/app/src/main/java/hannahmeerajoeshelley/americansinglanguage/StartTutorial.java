@@ -52,7 +52,7 @@ public class StartTutorial extends Activity {
 
     }
 
-    public void playWord(String word) {
+    public void playWord() {
         if (mediaPlay == null) {
             mediaPlay = MediaPlayer.create(this,R.raw.twinkle);
         }
