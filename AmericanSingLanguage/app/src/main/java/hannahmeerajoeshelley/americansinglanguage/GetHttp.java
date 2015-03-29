@@ -33,7 +33,7 @@ public class GetHttp {
 
     public String getResponse(String fetchURL, String objType){
         HttpResponse<JsonNode> responseJS = getHttp(fetchURL);
-        Log.d("DEBUG STREAM", responseJS.getRawBody().toString());
+        Log.d("DEBUG STREAM", responseJS.getStatusText());
         JSONObject obj = responseJS.getBody().getObject();
         String id ="";
         try {

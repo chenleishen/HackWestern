@@ -22,10 +22,10 @@ public class LyricsHandlerTest extends LyricsHandler {
         ApplicationTest.assertEquals("3",lyricsToActions("c",testActionList));
         ApplicationTest.assertEquals("1",lyricsToActions("a",testActionList));
 
-        //String[] testAPI = lyricReadAPI("hot cross buns");
-        //Log.e("TEST APP", "WHAT THE HELL~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        //Log.e("TEST APP", "" + testAPI[0]);
-        //Log.e("TEST APP", "" + testAPI[1]);
+        String[] testAPI = lyricReadAPI("hot cross buns");
+        Log.d("Lyrics API Attempt", "API~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        Log.d("Lyrics API Attempt", "API " + testAPI[0]);
+        //Log.d("TEST APP", "" + testAPI[1]);
         //ApplicationTest.assertEquals("1", testAPI[0]);
     }
 }

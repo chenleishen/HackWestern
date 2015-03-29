@@ -1,5 +1,7 @@
 package hannahmeerajoeshelley.americansinglanguage;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -105,9 +107,12 @@ public class LyricsHandler {
      */
     public String[] lyricReadAPI(String songName){
         String searchSongName = songName.replace(" ", "+");
+        Log.d("lyric API Attempt","searchSongName = " + searchSongName);
         GetHttp cURL = new GetHttp();
         String trackID = cURL.getResponse("https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.search?f_has_lyrics=1&page=1&page_size=5&q=" + searchSongName, "track_id");
+        Log.d("lyric API Attempt", "trackID = " + trackID);
         String lyricsUntouched = cURL.getResponse("GEThttps://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.lyrics.get?track_id=" + trackID, "lyrics_body");
+        Log.d("lyric API Attempt", "lyricsUntouched = " + lyricsUntouched);
         String[] lyricsNewLine = lyricsUntouched.split("\n\r");
         return lyricsNewLine;
     }
