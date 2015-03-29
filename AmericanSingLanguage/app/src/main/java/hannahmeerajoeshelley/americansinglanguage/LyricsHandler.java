@@ -18,7 +18,7 @@ import java.util.ArrayList;
  *
  */
 public class LyricsHandler {
-    //ActionList DEPRECIATED(?)
+    //ActionList
     private ArrayList<WordAction> savedActionList = new ArrayList<WordAction>();
 
     public LyricsHandler() {
@@ -36,35 +36,41 @@ public class LyricsHandler {
         buildTwinkle();
     }
 
-    //DEPRECIATED TODO: Remove this
-    private void buildTwinkle(){ //WTF is wrong with me just get the media/{word}.mp4
-        savedActionList.add(new WordAction("a","media/a.mp4"));
-        savedActionList.add(new WordAction("above","media/above.mp4"));
-        savedActionList.add(new WordAction("are",""));
-        savedActionList.add(new WordAction("diamond",""));
-        savedActionList.add(new WordAction("high",""));
-        savedActionList.add(new WordAction("how",""));
-        savedActionList.add(new WordAction("i",""));
-        savedActionList.add(new WordAction("in",""));
-        savedActionList.add(new WordAction("like",""));
-        savedActionList.add(new WordAction("little",""));
-        savedActionList.add(new WordAction("sky",""));
-        savedActionList.add(new WordAction("so",""));
-        savedActionList.add(new WordAction("star",""));
-        savedActionList.add(new WordAction("the",""));
-        savedActionList.add(new WordAction("twinkle",""));
-        savedActionList.add(new WordAction("up",""));
-        savedActionList.add(new WordAction("what",""));
-        savedActionList.add(new WordAction("wonder",""));
-        savedActionList.add(new WordAction("world",""));
-        savedActionList.add(new WordAction("you",""));
+
+    private void buildTwinkle(){
+        savedActionList.add(new WordAction("above",R.raw.above));
+        savedActionList.add(new WordAction("are",R.raw.are));
+        savedActionList.add(new WordAction("diamond",R.raw.diamond));
+        //savedActionList.add(new WordAction("high",R.raw.high));
+        savedActionList.add(new WordAction("i",R.raw.i));
+        savedActionList.add(new WordAction("in",R.raw.in));
+        savedActionList.add(new WordAction("like",R.raw.like));
+        savedActionList.add(new WordAction("little",R.raw.little));
+        savedActionList.add(new WordAction("sky",R.raw.sky));
+        savedActionList.add(new WordAction("star",R.raw.star));
+        savedActionList.add(new WordAction("twinkle",R.raw.twinkle));
+        savedActionList.add(new WordAction("up",R.raw.up));
+        savedActionList.add(new WordAction("what",R.raw.what));
+        savedActionList.add(new WordAction("wonder",R.raw.wonder));
+        savedActionList.add(new WordAction("world",R.raw.world));
+        savedActionList.add(new WordAction("you",R.raw.you));
     }
+
+    public int[] getTwinkleMap(String[] twinkleWord){
+        int[] temp = new int[32];
+        int i = 0;
+        for(; i < 32; ++i){
+            temp[i] = lyricsToActions(twinkleWord[i], savedActionList);
+        }
+
+        return temp;
+    }
+
 
     /* lyricsToActions
      * Overloading function
-     * DEPRECIATED
      */
-    private String lyricsToActions(String readWord) {
+    private int lyricsToActions(String readWord) {
         return lyricsToActions(readWord, savedActionList);
     }
     /* lyricsToActions
@@ -73,7 +79,7 @@ public class LyricsHandler {
      * Takes a word and an object WordAction and returns the matching lyric action link
      *
      */
-    public String lyricsToActions(String readWord, ArrayList<WordAction> savedAction) {
+    public int lyricsToActions(String readWord, ArrayList<WordAction> savedAction) {
         String tempReadWord = readWord.toUpperCase();
         //String tempReadAction = "";
 
@@ -85,9 +91,8 @@ public class LyricsHandler {
                 return savedAction.get(i).getLyricActionLink();
             }
         }
-        return "NO SIGN AVAILABLE";
+        return -1;
     }
-
 
     /* lyricsReadFile
      * String -> (ArrayOf String)
@@ -97,7 +102,7 @@ public class LyricsHandler {
      */
     public String[] lyricsReadFile(String songPath){
         String[] lyricsUntouched = null; //TODO: Change this
-        //TODO: Finish this method
+        //TODO: Finish this method or use xml
 
         return lyricsUntouched;
     };

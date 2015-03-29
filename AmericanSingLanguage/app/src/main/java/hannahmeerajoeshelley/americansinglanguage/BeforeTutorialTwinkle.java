@@ -1,9 +1,7 @@
 package hannahmeerajoeshelley.americansinglanguage;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +28,8 @@ public class BeforeTutorialTwinkle extends Activity implements View.OnClickListe
         final Context context = this;
         Intent intent =  null;
         if(radioButton1.isChecked() || radioButton2.isChecked()) {
-            intent = new Intent(context, StartTutorial.class);
+            intent = new Intent(this, StartTutorial.class);
+            intent.putExtra("songName","Twinkle Twinkle Little Star");
             startActivity(intent);
         }
         // prompt and refresh page

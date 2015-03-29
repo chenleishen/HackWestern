@@ -9,9 +9,9 @@ package hannahmeerajoeshelley.americansinglanguage;
  */
 public class WordAction {
     private String lyricWord;
-    private String lyricActionLink;
+    private int lyricActionLink;
 
-    public WordAction(String newWord, String newAction){
+    public WordAction(String newWord, int newAction){
         lyricWord = newWord;
         lyricActionLink = newAction;
     }
@@ -20,11 +20,11 @@ public class WordAction {
         return lyricWord;
     }
 
-    public String getLyricActionLink(){
+    public int getLyricActionLink(){
         return lyricActionLink;
     }
 
-    public void addWordAction(String newWord, String newAction){
+    public void addWordAction(String newWord, int newAction){
         lyricWord = newWord;
         lyricActionLink = newAction;
     }

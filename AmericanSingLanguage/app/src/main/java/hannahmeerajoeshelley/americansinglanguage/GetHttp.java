@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 /**
  * Created by joseph on 15-03-28.
+ * DEPRECIATED remove
  */
 public class GetHttp {
     public GetHttp(){

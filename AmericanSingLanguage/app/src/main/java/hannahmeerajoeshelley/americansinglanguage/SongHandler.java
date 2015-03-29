@@ -22,8 +22,9 @@ public class SongHandler {
         LyricsHandler lyricsOne = new LyricsHandler();
         String[] maps = lyricsOne.getLyricMap(songName, HARD);
         String[] lyrics = lyricsOne.parseLyrics(songName, HARD);
+        int[] lMap = lyricsOne.getTwinkleMap(lyrics);
 
-        songs.add(new SongType(songName, maps, lyrics));
+        songs.add(new SongType(songName, maps, lyrics, lMap));
     }
 
     // Get SongType from interface

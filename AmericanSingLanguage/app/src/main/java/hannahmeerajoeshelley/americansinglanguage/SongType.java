@@ -7,11 +7,18 @@ public class SongType {
     private String songName;
     private String[] songMap;
     private String[] songLyrics;
+    private int[] lyricMap;
 
     public SongType (String name, String[] map, String[] lyrics){
         songName = name;
         songMap = map;
         songLyrics = lyrics;
+    }
+    public SongType (String name, String[] map, String[] lyrics, int[] lMaps){
+        songName = name;
+        songMap = map;
+        songLyrics = lyrics;
+        lyricMap = lMaps;
     }
 
     public String getName(){
@@ -24,5 +31,9 @@ public class SongType {
 
     public String[] getSongLyrics(){
         return songLyrics;
+    }
+
+    public int[] getLyricMap(){
+        return lyricMap;
     }
 }
