@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  */
 public class LyricsHandler {
-    //ActionList
+    //ActionList DEPRECIATED(?)
     private ArrayList<WordAction> savedActionList = new ArrayList<WordAction>();
 
     public LyricsHandler() {
@@ -25,7 +25,7 @@ public class LyricsHandler {
 
     /* buildActionList
      * Builds twinkle twinkle little star's word list
-     *
+     * DEPRECIATED
      */
     private void buildActionList(){
         //TODO: Convert this to use a SQLlite
@@ -34,9 +34,10 @@ public class LyricsHandler {
         buildTwinkle();
     }
 
-    private void buildTwinkle(){
-        savedActionList.add(new WordAction("a",""));
-        savedActionList.add(new WordAction("above",""));
+    //DEPRECIATED TODO: Remove this
+    private void buildTwinkle(){ //WTF is wrong with me just get the media/{word}.mp4
+        savedActionList.add(new WordAction("a","media/a.mp4"));
+        savedActionList.add(new WordAction("above","media/above.mp4"));
         savedActionList.add(new WordAction("are",""));
         savedActionList.add(new WordAction("diamond",""));
         savedActionList.add(new WordAction("high",""));
@@ -59,6 +60,7 @@ public class LyricsHandler {
 
     /* lyricsToActions
      * Overloading function
+     * DEPRECIATED
      */
     private String lyricsToActions(String readWord) {
         return lyricsToActions(readWord, savedActionList);
@@ -92,7 +94,7 @@ public class LyricsHandler {
      *
      */
     public String[] lyricsReadFile(String songPath){
-        String[] lyricsUntouched = new String[0]; //TODO: Change this
+        String[] lyricsUntouched = null; //TODO: Change this
         //TODO: Finish this method
 
         return lyricsUntouched;
@@ -102,28 +104,26 @@ public class LyricsHandler {
      * String -> (ArrayOf Strings)
      */
     public String[] lyricReadAPI(String songName){
-        int trackID = 0;
+        String searchSongName = songName.replace(" ", "+");
+        GetHttp cURL = new GetHttp();
+        String trackID = cURL.getResponse("https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.search?f_has_lyrics=1&page=1&page_size=5&q=" + searchSongName, "track_id");
+        String lyricsUntouched = cURL.getResponse("GEThttps://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.lyrics.get?track_id=" + trackID, "lyrics_body");
+        String[] lyricsNewLine = lyricsUntouched.split("\n\r");
+        return lyricsNewLine;
+    }
 
-        // curl --get --include "https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.search?f_has_lyrics=1&page=1&page_size=5&q=Every+tear+drop+paradise+coldpay&q_artist=coldplay&q_lyrics=Every+tear+a+waterfall&q_track=paradise&q_track_artist=paradise+coldplay&s_track_rating=desc" \
-        // -H "X-Mashape-Key: EEZTLb3jOTmshwWGf9EA4GGXgEFop1wZsP4jsnDKSP26wlBPLg" \
-        // -H "Accept: application/json"
-        //HttpHandler getREST = new HttpHandler();
-        //String getTrackInfoREST = getREST.getRequest("https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.search?f_has_lyrics=1&page=1&page_size=5&q=" + songName);
-        //String[] delimitedTrackInfo = getTrackInfoREST.split("\\{\"");
-        //String[] delimitedTrackInfo = getTrackInfoREST.split(",\"track_mbid\":");
-        //
-        //HttpResponse<JsonNode> response = Unirest.get("https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.search?f_has_lyrics=1&page=1&page_size=5&q=hot+cross+buns&s_track_rating=desc")
-        //        .header("X-Mashape-Key", "EEZTLb3jOTmshwWGf9EA4GGXgEFop1wZsP4jsnDKSP26wlBPLg")
-        //        .header("Accept", "application/json")
-        //        .asJson();
+    public String lyricsRetrieveMemory(String songName){
+        String lyricGroup = new String();
+        if(songName.toUpperCase().equals("TWINKLE TWINKLE LITTLE STAR")){
+            lyricGroup = "Twinkle, twinkle, little star,\n" +
+                            "How I wonder what you are.\n" +
+                            "Up above the world so high,\n" +
+                            "Like a diamond in the sky.\n" +
+                            "Twinkle, twinkle, little star.\n" +
+                            "How I wonder what you are.";
+        }
 
-        // curl --get --include "https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/track.lyrics.get?track_id=15449912" \
-        // -H "X-Mashape-Key: EEZTLb3jOTmshwWGf9EA4GGXgEFop1wZsP4jsnDKSP26wlBPLg" \
-        // -H "Accept: application/json"
-
-        String[] testOut = new String[1];
-        //testOut[0] = getTrackInfoREST;
-        return testOut;
+        return lyricGroup;
     }
 
 
@@ -131,6 +131,7 @@ public class LyricsHandler {
     private static final byte FILE = 0;
     private static final byte API = 1;
     private static final byte SQLLITE = 2;
+    private static final byte HARD = 3;
     /* parseLyrics
      * (String String) -> (ArrayOf String)
      * Either the file name or song name to get from API is the input
@@ -138,10 +139,13 @@ public class LyricsHandler {
      * ... get lyrics from any source (toggle option)
      *      then passes it through lyricsToActions
      *
+     *     TODO: Depreciate this
+     *
      */
-    public ArrayList<String> parseLyrics(String nameOfSong, byte retrievalType){
-        String[] lyricsUntouched = new String[0];
-        ArrayList<String> makeActionList = new ArrayList<String>();
+    public String[] parseLyrics(String nameOfSong, byte retrievalType){ //ArrayList<String> parseLyrics(String nameOfSong, byte retrievalType){
+        String[] lyricsUntouched = null;
+        String lyricsNTouched = null;
+        //ArrayList<String> makeActionList = new ArrayList<String>();
 
         // Get from File
         if(retrievalType == FILE){
@@ -156,17 +160,54 @@ public class LyricsHandler {
             //lyricsUntouched = lyricsReadAPI(nameOfSong); //TODO: Add this one eventually?
         }
 
-        int i = lyricsUntouched.length - 1, b = i;
-        for(; i>=0; --i) {
-            String[] lyricLines = lyricsUntouched[b - i].split("[ .,\n\r]+");
-            int j = lyricLines.length - 1, c = j;
-            for(; j>=0; --j) {
-                makeActionList.add(lyricsToActions(lyricLines[c - j]));
-            }
+        if(retrievalType == HARD){
+            lyricsNTouched = lyricsRetrieveMemory(nameOfSong);
         }
 
-        return makeActionList;
+//        int i = lyricsUntouched.length - 1, b = i;
+//        for(; i>=0; --i) {
+//            String[] lyricLines = lyricsUntouched[b - i].split("[ .,\n\r]+");
+//            int j = lyricLines.length - 1, c = j;
+//            for(; j>=0; --j) {
+//                makeActionList.add(lyricsToActions(lyricLines[c - j]));
+//            }
+//        }
+
+        String[] lyricsTouched = lyricsNTouched.split("[ .,\n\r]+");
+
+        return lyricsTouched;
     }
 
+    private String[] songMapRetrieveMemory(String nameOfSong){
+        String[] songMap = null;
+
+        if(nameOfSong.toUpperCase().equals("TWINKLE TWINKLE LITTLE STAR")){
+            String[] songMapTemp = {"4","1","2","3"
+                                   ,"5","1","2","2","1","1"
+                                   ,"3","1","2","1","1","1"
+                                   ,"3","1","1","2","1","1"
+                                   ,"4","2","2","2"
+                                   ,"4","1","1","1","2","2"};
+            songMap = songMapTemp;
+        }
+
+        return songMap;
+    }
+
+
+    public String[] getLyricMap(String nameOfSong, byte retrievalType){
+        String[] songMap = null;
+
+        // TODO: Impliment these
+        // if(retievalType == FILE){}
+        // if(retievalType == API){}
+        // if(retievalType == SQLLITE){}
+
+        if(retrievalType == HARD){
+            songMap = songMapRetrieveMemory(nameOfSong);
+        }
+
+        return songMap;
+    }
 
 }
