@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -72,17 +71,21 @@ public class StartTutorial extends Activity {
 
    public void playNext(){
        if(pos < songData.getSongLyrics().length) {
-           if(pos % 2 == 0) {
-               myVideoView = (VideoView) findViewById(videoView1);
-               myVideoView.setVisibility(View.VISIBLE);
-               myVideoView.bringToFront();
-               playView(videoView0, pos);
-           }else{
-               myVideoView = (VideoView) findViewById(videoView0);
-               myVideoView.setVisibility(View.VISIBLE);
-               myVideoView.bringToFront();
-               playView(videoView0, pos);
-           }
+//           if(pos % 2 == 0) {
+//               myVideoView = (VideoView) findViewById(videoView1);
+//               myVideoView.setVisibility(View.VISIBLE);
+//               myVideoView.bringToFront();
+//               playView(videoView0, pos);
+//           }else{
+//               myVideoView = (VideoView) findViewById(videoView0);
+//               myVideoView.setVisibility(View.VISIBLE);
+//               myVideoView.bringToFront();
+//               playView(videoView0, pos);
+//           }
+           TextView titleBox = (TextView) findViewById(R.id.TutorialTitle);
+           titleBox.setText(songData.getSongLyrics()[pos]);
+
+           playView(videoView0, pos);
            pos++;
        }else{
            MediaPlayer mp = new MediaPlayer();
