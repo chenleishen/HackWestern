@@ -32,13 +32,7 @@ public class StartTutorial extends Activity {
 
         playWord();
 
-        MediaPlayer.OnCompletionListener completionListener=new MediaPlayer.OnCompletionListener() {
-
-            public void onCompletion(MediaPlayer mp) {
-                mp.stop();
-                playWord();
-            }
-        };
+        myVideoView.setOnCompletionListener(completionListener);
 
 //        int i = 0;
 //        int size = words.length;
@@ -62,6 +56,14 @@ public class StartTutorial extends Activity {
         myVideoView.start();
 
     }
+
+    private MediaPlayer.OnCompletionListener completionListener=new MediaPlayer.OnCompletionListener() {
+
+        public void onCompletion(MediaPlayer mp) {
+            mp.stop();
+            playWord();
+        }
+    };
 
 
 }
