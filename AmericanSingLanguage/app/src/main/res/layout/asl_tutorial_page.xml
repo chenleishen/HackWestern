@@ -7,7 +7,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="45dp"
+        android:textColor="#ff7accc8"
         android:id="@+id/TutorialTitle"
         android:text="Video"
         android:layout_gravity="center_horizontal"
